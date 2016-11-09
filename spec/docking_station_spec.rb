@@ -1,5 +1,5 @@
-require 'docking_station'
-require 'bike'
+require 'docking_station.rb'
+require 'bike.rb'
 describe DockingStation do
   it {is_expected.to respond_to(:release_bike)}
 
@@ -7,4 +7,8 @@ describe DockingStation do
     bike = subject.release_bike
     expect(bike).to be_working
   end
+
+  it { is_expected.to respond_to(:dock).with(1).argument }
+
+  it { is_expected.to respond_to(:bike) }
 end
