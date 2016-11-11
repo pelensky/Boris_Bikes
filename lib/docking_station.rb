@@ -24,10 +24,12 @@ attr_reader :capacity, :bikes
 
   def broken_bikes
    not_working_bike = @bikes.select {|bike| !bike.working}
-   remove_bikes     = @bikes.each   {|bike| if !bike.working; @bikes.delete(bike); end}
+   remove_bikes     = @bikes.delete_if   {|bike| bike.working == false}
    not_working_bike
 
+
   end
+
 
 private
 
