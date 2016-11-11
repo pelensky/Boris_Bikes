@@ -64,7 +64,7 @@ describe DockingStation do
     subject.dock(bike2)
     expect(subject.release_bike.working).to eq true
   end
-
+#dkvhfuvhfdu
 
 
 end
