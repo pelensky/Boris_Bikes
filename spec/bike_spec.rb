@@ -1,4 +1,4 @@
-require "./lib/boris_bikes.rb"
+require "./lib/docking_station.rb"
 require "./lib/bike.rb"
 
 describe Bike do

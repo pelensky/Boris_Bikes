@@ -1,4 +1,4 @@
-require 'boris_bikes'
+require './lib/docking_station'
 
 describe DockingStation do
   it "Responds to a method called release_bike" do
