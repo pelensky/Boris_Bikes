@@ -11,12 +11,15 @@ describe DockingStation do
   #   expect(release_bike).to respond_to(:working?)
   # end
 
-  it "Test that release_bike instantiates a new working Bike" do
+
+
+  it "Expect a new bike to respond to working and working to be eq to true" do
 
     docking_station = DockingStation.new
     bike= Bike.new
-    expect(bike).to respond_to(:working?)
-    expect(bike.working?).to eq true
+    bike_condition = bike.working
+    expect(bike).to respond_to(:working)
+    expect(bike_condition).to eq true
   end
 
   it "Responds to a method called dock" do
@@ -55,5 +58,7 @@ describe DockingStation do
     docking_station.capacity.times {docking_station.dock bike}
     expect {docking_station.dock(bike)}.to raise_error "Docking station full!"
   end
+
+
 
 end

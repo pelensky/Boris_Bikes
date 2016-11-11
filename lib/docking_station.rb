@@ -1,6 +1,8 @@
+require './lib/bike'
+
 class DockingStation
 
-attr_reader :capacity
+attr_reader :capacity, :bikes
 
   DEFAULT_CAPACITY = 20
 
@@ -11,17 +13,20 @@ attr_reader :capacity
 
   def release_bike
     raise "No more bikes!" if empty?
-    @bikes.pop
+      return_working_bike
+    return working_bike
   end
 
   def dock(bike)
     raise "Docking station full!" if full?
-    @bikes << "bike"
+    @bikes << bike
   end
 
 private
 
-   attr_reader :bikes
+   def return_working_bike
+      @bikes.select {|bike| bike.working}.pop
+   end
 
    def full?
      @bikes.count >= @capacity

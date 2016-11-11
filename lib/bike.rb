@@ -1,7 +1,9 @@
 
-class Bike
-
-  def working?
-    true
   end
+
+  def working=(working = true)
+    @working = working
+  end
+
+
 end
