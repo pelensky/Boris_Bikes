@@ -1,5 +1,3 @@
-
-
 class Bike
 
   attr_accessor :working

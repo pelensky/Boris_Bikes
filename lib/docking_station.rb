@@ -14,8 +14,7 @@ attr_reader :capacity, :bikes
 
   def release_bike
     raise "No more bikes!" if empty?
-      return_working_bike
-    return working_bike
+    return return_working_bike
   end
 
   def dock(bike)
@@ -26,7 +25,8 @@ attr_reader :capacity, :bikes
 private
 
    def return_working_bike
-      @bikes.select {|bike| bike.working}.pop
+    working_bike = @bikes.select {|bike| bike.working}.pop
+    @bikes.delete(working_bike)
    end
 
    def full?

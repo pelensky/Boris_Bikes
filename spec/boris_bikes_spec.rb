@@ -23,9 +23,8 @@ describe DockingStation do
   end
 
   it "Responds to a method called dock" do
-    docking_station = DockingStation.new
-    bike = Bike.new
-    expect(docking_station).to respond_to(:dock).with(1).argument
+
+    expect(subject).to respond_to(:dock).with(1).argument
   end
 
   # it "If bike is there, return true" do
@@ -36,20 +35,18 @@ describe DockingStation do
   # end
 
   it "Raises an error when asked to release bike when bikes array is empty" do
-    docking_station = DockingStation.new
-    expect {docking_station.release_bike}.to raise_error("No more bikes!")
+
+    expect {subject.release_bike}.to raise_error("No more bikes!")
   end
 
   it "Raises an error when full" do
-    docking_station = DockingStation.new
-    bike = Bike.new
-    docking_station.capacity.times {docking_station.dock bike}
-    expect {docking_station.dock(bike)}.to raise_error("Docking station full!")
+
+    subject.capacity.times {subject.dock double(:bike)}
+    expect {subject.dock double(:bike)}.to raise_error("Docking station full!")
   end
 
   it "Sets a capacity to default capacity if not given one" do
-    docking_station = DockingStation.new
-    expect(docking_station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
   it "Allows a system maintainer to change capacity of docking station" do
@@ -57,6 +54,15 @@ describe DockingStation do
     bike = Bike.new
     docking_station.capacity.times {docking_station.dock bike}
     expect {docking_station.dock(bike)}.to raise_error "Docking station full!"
+  end
+
+  it "tests that release_bike will release a working bike" do
+    bike=Bike.new
+    bike2=Bike.new
+    bike2.working = false
+    subject.dock(bike)
+    subject.dock(bike2)
+    expect(subject.release_bike.working).to eq true
   end
 
 
