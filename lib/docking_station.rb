@@ -1,4 +1,5 @@
 require './lib/bike'
+require './lib/van'
 
 class DockingStation
 
@@ -21,7 +22,16 @@ attr_reader :capacity, :bikes
     @bikes << bike
   end
 
+  def broken_bikes
+   not_working_bike = @bikes.select {|bike| !bike.working}
+   remove_bikes     = @bikes.each   {|bike| if !bike.working; @bikes.delete(bike); end}
+   not_working_bike
+
+  end
+
 private
+
+
 
    def return_working_bike
     working_bike = @bikes.select {|bike| bike.working}.pop

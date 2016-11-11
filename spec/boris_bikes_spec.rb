@@ -54,6 +54,18 @@ let(:bike2) {double :bike}
     expect(subject.release_bike.working).to eq true
   end
 
+  it "tests that broken bikes returns broken bikes" do
+    allow(bike).to receive(:working).and_return(true)
+    allow(bike2).to receive(:working).and_return(false)
+
+    subject.dock(bike)
+    subject.dock(bike)
+    subject.dock(bike2)
+    subject.dock(bike2)
+
+    expect(subject.broken_bikes.pop.working).to eq false
+  end
+
 
 
 end
